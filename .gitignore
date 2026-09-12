@@ -1,0 +1,9 @@
+node_modules
+dist
+.env
+*.log
+__pycache__
+.venv
+frontend/.env
+backend/local-service/.env
+backend/cloud-api/.env

@@ -1,0 +1,5 @@
+app = "jarvis-ai-assistant"
+primary_region = "cdg"
+
+[http_service]
+  internal_port = 8080

@@ -1,0 +1,20 @@
+import { Hono } from 'hono';
+import { serve } from '@hono/node-server';
+import { corsMiddleware } from './middleware/cors';
+import { authMiddleware } from './middleware/auth';
+import { commandsRoutes } from './routes/commands';
+import { notionRoutes } from './routes/notion';
+import { calendarRoutes } from './routes/calendar';
+import { briefingRoutes } from './routes/briefing';
+import { userRoutes } from './routes/user';
+
+const app = new Hono();
+app.use('*', corsMiddleware);
+app.use('/api/v1/*', authMiddleware);
+app.get('/health', (c) => c.json({ status: 'ok', service: 'cloud-api' }));
+app.route('/api/v1/commands', commandsRoutes);
+app.route('/api/v1/notion', notionRoutes);
+app.route('/api/v1/calendar', calendarRoutes);
+app.route('/api/v1/briefing', briefingRoutes);
+app.route('/api/v1/user', userRoutes);
+serve({ fetch: app.fetch, port: Number(process.env.PORT || 8080) });
