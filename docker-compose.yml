@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  local-service:
+    build: ./backend/local-service
+    ports:
+      - '4001:4001'
+    env_file:
+      - ./backend/local-service/.env.example
+  cloud-api:
+    build: ./backend/cloud-api
+    ports:
+      - '8080:8080'
+    env_file:
+      - ./backend/cloud-api/.env.example

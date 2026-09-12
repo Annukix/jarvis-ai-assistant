@@ -1,0 +1,11 @@
+name: deploy-cloud
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Configure Fly deploy secrets before enabling auto-deploy"
